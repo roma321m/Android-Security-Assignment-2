@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -17,30 +15,35 @@ import java.util.Objects;
 
 import javax.net.ssl.HttpsURLConnection;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class Activity_Menu extends AppCompatActivity {
     private MaterialButton    menu_BTN_start;
-    /* access modifiers changed from: private */
-    public  TextInputEditText menu_EDT_id;
+    private TextInputEditText menu_EDT_id;
 
-    /* access modifiers changed from: protected */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView((int) R.layout.activity_menu);
+        setContentView(R.layout.activity_menu);
         findViews();
         initViews();
     }
 
     private void initViews() {
-        this.menu_BTN_start.setOnClickListener(v -> Activity_Menu.this.makeServerCall());
+        this.menu_BTN_start.setOnClickListener(v -> {
+            if (Objects.requireNonNull(this.menu_EDT_id.getText()).toString().length() != 9) {
+                return;
+            }
+            Activity_Menu.this.makeServerCall();
+        });
     }
 
     private void findViews() {
-        this.menu_BTN_start = (MaterialButton) findViewById(R.id.menu_BTN_start);
-        this.menu_EDT_id = (TextInputEditText) findViewById(R.id.menu_EDT_id);
+        this.menu_BTN_start = findViewById(R.id.menu_BTN_start);
+        this.menu_EDT_id = findViewById(R.id.menu_EDT_id);
     }
 
     /* access modifiers changed from: private */
-    public void makeServerCall() {
+    private void makeServerCall() {
         new Thread() {
             public void run() {
                 String data = Activity_Menu.getJSON(Activity_Menu.this.getString(R.string.url));
@@ -53,10 +56,7 @@ public class Activity_Menu extends AppCompatActivity {
         }.start();
     }
 
-    /* access modifiers changed from: private */
-    public void startGame(String id, String data) {
-        if (id.length() != 9) // todo
-            return;
+    private void startGame(String id, String data) {
         String state = data.split(",")[Integer.parseInt(String.valueOf(id.charAt(7)))];
         Intent intent = new Intent(getBaseContext(), Activity_Game.class);
         Log.d("pttt", id);

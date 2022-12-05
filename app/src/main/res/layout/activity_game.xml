@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:aapt="http://schemas.android.com/aapt"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -10,7 +8,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_alignTop="@+id/game_LAY_center"
-        android:layout_toLeftOf="@+id/game_LAY_center"
+        android:layout_toStartOf="@+id/game_LAY_center"
         android:adjustViewBounds="true"
         android:background="?android:attr/selectableItemBackground"
         android:scaleType="fitCenter"
@@ -21,7 +19,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_alignTop="@+id/game_LAY_center"
-        android:layout_toRightOf="@+id/game_LAY_center"
+        android:layout_toEndOf="@+id/game_LAY_center"
         android:adjustViewBounds="true"
         android:background="?android:attr/selectableItemBackground"
         android:scaleType="fitCenter"
@@ -32,7 +30,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_above="@+id/game_LAY_center"
-        android:layout_alignLeft="@+id/game_LAY_center"
+        android:layout_alignStart="@+id/game_LAY_center"
         android:adjustViewBounds="true"
         android:background="?android:attr/selectableItemBackground"
         android:scaleType="fitCenter"
@@ -43,7 +41,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_below="@+id/game_LAY_center"
-        android:layout_alignLeft="@+id/game_LAY_center"
+        android:layout_alignStart="@+id/game_LAY_center"
         android:adjustViewBounds="true"
         android:background="?android:attr/selectableItemBackground"
         android:scaleType="fitCenter"

@@ -15,32 +15,55 @@ public class Activity_Game extends AppCompatActivity {
     private boolean goodToGo = true;
     int[] steps = {1, 1, 1, 2, 2, 2, 3, 3, 3};
 
-    /* access modifiers changed from: protected */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView((int) R.layout.activity_game);
+
+        setContentView(R.layout.activity_game);
+
         String id = getIntent().getStringExtra(EXTRA_ID);
-        if (id.length() == this.steps.length) {
-            int i = 0;
-            int[] iArr = this.steps;
-            while (i != iArr.length) { // todo
-                iArr[i] = Integer.parseInt(String.valueOf(id.charAt(i))) % 4;
-                i++;
-            }
-            Log.d("tppp", "iArr: [" + iArr[0] + iArr[1] + iArr[2] + iArr[3] + iArr[4] + iArr[5] + iArr[6] + iArr[7] + iArr[8] + "]");
-        }
+        getSteps(id);
+
         findViews();
         initViews();
     }
 
-    /* access modifiers changed from: private */
-    public void arrowClicked(int direction) {
+    private void getSteps(String id) {
+        if (id.length() == this.steps.length) {
+            int i = 0;
+            int[] iArr = this.steps;
+            StringBuilder mySteps = new StringBuilder("My steps: \n");
+            while (i != iArr.length) { // todo
+                iArr[i] = Integer.parseInt(String.valueOf(id.charAt(i))) % 4;
+                mySteps.append(i+1);
+                mySteps.append(") ");
+                switch (iArr[i]) {
+                    case 0:
+                        mySteps.append(" left \n");
+                        break;
+                    case 1:
+                        mySteps.append(" right \n");
+                        break;
+                    case 2:
+                        mySteps.append(" Up \n");
+                        break;
+                    case 3:
+                        mySteps.append(" Down \n");
+                        break;
+                    default:
+                        break;
+                }
+                i++;
+            }
+            Log.d("pttt", mySteps.toString());
+        }
+    }
+
+    private void arrowClicked(int direction) {
         if (this.goodToGo && direction != this.steps[this.currentLevel]) {
             this.goodToGo = false;
         }
-        int i = this.currentLevel + 1;
-        this.currentLevel = i;
-        if (i >= this.steps.length) {
+        this.currentLevel ++;
+        if (this.currentLevel >= this.steps.length) {
             finishGame();
         }
     }
@@ -59,7 +82,6 @@ public class Activity_Game extends AppCompatActivity {
     private void initViews() {
         int i = 0;
         while (true) {
-//            ImageButton[] imageButtonArr = this.arrows;
             if (i < arrows.length) {
                 final int finalI = i;
                 arrows[i].setOnClickListener(v -> Activity_Game.this.arrowClicked(finalI));
@@ -73,10 +95,10 @@ public class Activity_Game extends AppCompatActivity {
 
     private void findViews() {
         this.arrows = new ImageButton[]{
-                (ImageButton) findViewById(R.id.game_BTN_left),
-                (ImageButton) findViewById(R.id.game_BTN_right),
-                (ImageButton) findViewById(R.id.game_BTN_up),
-                (ImageButton) findViewById(R.id.game_BTN_down)
+                findViewById(R.id.game_BTN_left),
+                findViewById(R.id.game_BTN_right),
+                findViewById(R.id.game_BTN_up),
+                findViewById(R.id.game_BTN_down)
         };
     }
 }
