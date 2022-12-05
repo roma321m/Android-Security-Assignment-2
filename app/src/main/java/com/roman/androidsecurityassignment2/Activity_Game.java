@@ -32,7 +32,7 @@ public class Activity_Game extends AppCompatActivity {
             int i = 0;
             int[] iArr = this.steps;
             StringBuilder mySteps = new StringBuilder("My steps: \n");
-            while (i != iArr.length) { // todo
+            while (i != iArr.length) { // Fixed this while loop condition
                 iArr[i] = Integer.parseInt(String.valueOf(id.charAt(i))) % 4;
                 mySteps.append(i+1);
                 mySteps.append(") ");

@@ -30,6 +30,7 @@ public class Activity_Menu extends AppCompatActivity {
 
     private void initViews() {
         this.menu_BTN_start.setOnClickListener(v -> {
+            // Fixed this call, only if has 9 digits can proceed
             if (Objects.requireNonNull(this.menu_EDT_id.getText()).toString().length() != 9) {
                 return;
             }
@@ -46,7 +47,7 @@ public class Activity_Menu extends AppCompatActivity {
     private void makeServerCall() {
         new Thread() {
             public void run() {
-                String data = Activity_Menu.getJSON(Activity_Menu.this.getString(R.string.url));
+                String data = Activity_Menu.getJSON(Activity_Menu.this.getString(R.string.url)); // This URL was not valid, contained 3 spaces.
                 Log.d("pttt", data);
                 if (data != null) {
                     Activity_Menu activity_Menu = Activity_Menu.this;
@@ -57,7 +58,7 @@ public class Activity_Menu extends AppCompatActivity {
     }
 
     private void startGame(String id, String data) {
-        String state = data.split(",")[Integer.parseInt(String.valueOf(id.charAt(7)))];
+        String state = data.split(",")[Integer.parseInt(String.valueOf(id.charAt(7)))]; // This was a crash if less than 7 digit
         Intent intent = new Intent(getBaseContext(), Activity_Game.class);
         Log.d("pttt", id);
         Log.d("pttt", state);

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Android Security Assignment 2</string>
-    <string name="url">https://pastebin.com/raw/T67TVJG9</string>
+    <string name="url">https://pastebin.com/raw/T67TVJG9</string> <!-- fixed in the url 3 "invisible spaces" deleted -->
     <string name="start_game">Start Game</string>
     <string name="id">ID</string>
 </resources>
